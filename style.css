@@ -49,33 +49,51 @@ body {
 .new-game {
   position: absolute;
   top: 12%;
-  left: 50%;
+  left: 40%;
   transform: translate(-50%, -50%);
   border: 1px solid #001881;
-  padding: 32px 64px;
-  font-size: 32px;
+  width: 210px;
+  text-align: center;
+  padding: 24px 48px;
+  font-size: 24px;
   color: #001881;
-  border-radius: 32px;
+  border-radius: 24px;
+  cursor: pointer;
+}
+
+.reset {
+  position: absolute;
+  top: 12%;
+  right: 26.2%;
+  transform: translate(-50%, -50%);
+  border: 1px solid #001881;
+  width: 210px;
+  text-align: center;
+  padding: 24px 48px;
+  font-size: 24px;
+  color: #001881;
+  border-radius: 24px;
+  cursor: pointer;
 }
 
 .box {
   border: 1px solid #001881;
-  width: 600px;
-  height: 600px;
+  width: 420px;
+  height: 420px;
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
 
   display: grid;
-  grid-template-columns: repeat(3, 200px);
-  grid-template-rows: repeat(3, 200px);
+  grid-template-columns: repeat(3, 140px);
+  grid-template-rows: repeat(3, 140px);
   box-shadow: 0 20px 60px 40px rgb(0, 0, 0, 0.25);
 }
 
 .square {
-  width: 200px;
-  height: 200px;
+  width: 140px;
+  height: 140px;
   border: 1px solid #001881;
   background: radial-gradient(#e6e8f2, transparent);
   z-index: 2;
@@ -88,14 +106,14 @@ body {
 
 .square-icon {
   color: #001881;
-  font-size: 200px;
+  font-size: 140px;
 }
 
 .indicator-cross {
   background-color: #00ff7f;
   position: absolute;
-  width: 300px;
-  height: 300px;
+  width: 200px;
+  height: 200px;
   left: 25%;
   top: 75%;
   transform: translate(-50%, -50%);
@@ -108,8 +126,8 @@ body {
 .indicator-nuts {
   background-color: #00fa9a;
   position: absolute;
-  width: 300px;
-  height: 300px;
+  width: 200px;
+  height: 200px;
   right: 25%;
   top: 75%;
   transform: translate(50%, -50%);
@@ -128,7 +146,7 @@ body {
 .player-box-cross,
 .player-box-nuts {
   color: #001881;
-  font-size: 300px;
+  font-size: 200px;
 }
 
 .score-box-player1 {

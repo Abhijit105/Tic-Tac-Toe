@@ -1,19 +1,39 @@
 "use strict";
 
-const newGame = document.getElementsByClassName("new-game");
+const newGame = document.getElementsByClassName("new-game")[0];
+const reset = document.getElementsByClassName("reset")[0];
 const square = document.getElementsByClassName("square");
 const cross = document.getElementsByClassName("cross");
 const nuts = document.getElementsByClassName("nuts");
-const scorePlayer1 = document.getElementsByClassName("score-player1");
-const scorePlayer2 = document.getElementsByClassName("score-player2");
-const clicked = [];
-for (let i = 0; i < 9; i++) {
-  clicked.push(false);
-}
+const scorePlayer1 = document.getElementsByClassName("score-player1")[0];
+const scorePlayer2 = document.getElementsByClassName("score-player2")[0];
+const right = document.getElementsByClassName("right")[0];
+const left = document.getElementsByClassName("left")[0];
+
+let score1 = 0;
+let score2 = 0;
 let activePlayer = 1;
-console.log([...square]);
-console.log([...cross]);
-console.log([...nuts]);
+
+const clicked = [];
+
+const clickRefresh = () => {
+  for (let i = 0; i < 9; i++) {
+    clicked[i] = false;
+  }
+};
+
+const init = () => {
+  scorePlayer1.innerText = score1;
+  scorePlayer2.innerText = score2;
+  const clickRefresh = () => {
+    for (let i = 0; i < 9; i++) {
+      clicked.push(false);
+    }
+  };
+};
+
+init();
+
 [...square].forEach((sq, idx) => {
   sq.addEventListener("click", function () {
     if (!clicked[idx]) {
@@ -29,68 +49,100 @@ console.log([...nuts]);
         clicked[idx] = true;
         activePlayer = 1;
         console.log(activePlayer);
+        checkWinner();
       }
     }
   });
 });
 
 const checkWinner = () => {
-  const crossArr = [...cross];
-  console.log(crossArr);
-  const nutsArr = [...nuts];
-  // if (
-  //   (crossArr[0].children[0].getAttribute("name") === "close-outline" &&
-  //     crossArr[1].children[0].getAttribute("name") === "close-outline" &&
-  //     crossArr[2].children[0].getAttribute("name") === "close-outline") ||
-  //   (crossArr[3].children[0].getAttribute("name") === "close-outline" &&
-  //     crossArr[4].children[0].getAttribute("name") === "close-outline" &&
-  //     crossArr[5].children[0].getAttribute("name") === "close-outline") ||
-  //   (crossArr[6].children[0].getAttribute("name") === "close-outline" &&
-  //     crossArr[7].children[0].getAttribute("name") === "close-outline" &&
-  //     crossArr[8].children[0].getAttribute("name") === "close-outline") ||
-  //   (crossArr[0].children[0].getAttribute("name") === "close-outline" &&
-  //     crossArr[3].children[0].getAttribute("name") === "close-outline" &&
-  //     crossArr[6].children[0].getAttribute("name") === "close-outline") ||
-  //   (crossArr[1].children[0].getAttribute("name") === "close-outline" &&
-  //     crossArr[4].children[0].getAttribute("name") === "close-outline" &&
-  //     crossArr[7].children[0].getAttribute("name") === "close-outline") ||
-  //   (crossArr[2].children[0].getAttribute("name") === "close-outline" &&
-  //     crossArr[5].children[0].getAttribute("name") === "close-outline" &&
-  //     crossArr[8].children[0].getAttribute("name") === "close-outline") ||
-  //   (crossArr[0].children[0].getAttribute("name") === "close-outline" &&
-  //     crossArr[4].children[0].getAttribute("name") === "close-outline" &&
-  //     crossArr[8].children[0].getAttribute("name") === "close-outline") ||
-  //   (crossArr[2].children[0].getAttribute("name") === "close-outline" &&
-  //     crossArr[4].children[0].getAttribute("name") === "close-outline" &&
-  //     crossArr[6].children[0].getAttribute("name") === "close-outline")
-  // ) {
-  //   alert("Player 1 winner");
-  // } else if (
-  //   (nutsArr[0].children[0].getAttribute("name") === "close-outline" &&
-  //     nutsArr[1].children[0].getAttribute("name") === "close-outline" &&
-  //     nutsArr[2].children[0].getAttribute("name") === "close-outline") ||
-  //   (nutsArr[3].children[0].getAttribute("name") === "close-outline" &&
-  //     nutsArr[4].children[0].getAttribute("name") === "close-outline" &&
-  //     nutsArr[5].children[0].getAttribute("name") === "close-outline") ||
-  //   (nutsArr[6].children[0].getAttribute("name") === "close-outline" &&
-  //     nutsArr[7].children[0].getAttribute("name") === "close-outline" &&
-  //     nutsArr[8].children[0].getAttribute("name") === "close-outline") ||
-  //   (nutsArr[0].children[0].getAttribute("name") === "close-outline" &&
-  //     nutsArr[3].children[0].getAttribute("name") === "close-outline" &&
-  //     nutsArr[6].children[0].getAttribute("name") === "close-outline") ||
-  //   (nutsArr[1].children[0].getAttribute("name") === "close-outline" &&
-  //     nutsArr[4].children[0].getAttribute("name") === "close-outline" &&
-  //     nutsArr[7].children[0].getAttribute("name") === "close-outline") ||
-  //   (nutsArr[2].children[0].getAttribute("name") === "close-outline" &&
-  //     nutsArr[5].children[0].getAttribute("name") === "close-outline" &&
-  //     nutsArr[8].children[0].getAttribute("name") === "close-outline") ||
-  //   (nutsArr[0].children[0].getAttribute("name") === "close-outline" &&
-  //     nutsArr[4].children[0].getAttribute("name") === "close-outline" &&
-  //     nutsArr[8].children[0].getAttribute("name") === "close-outline") ||
-  //   (nutsArr[2].children[0].getAttribute("name") === "close-outline" &&
-  //     nutsArr[4].children[0].getAttribute("name") === "close-outline" &&
-  //     nutsArr[6].children[0].getAttribute("name") === "close-outline")
-  // ) {
-  //   alert("Player 2 winner");
-  // }
+  console.log([...square][0].innerHTML.includes("close-outline"));
+
+  if (
+    ([...square][0].innerHTML.includes("close-outline") &&
+      [...square][1].innerHTML.includes("close-outline") &&
+      [...square][2].innerHTML.includes("close-outline")) ||
+    ([...square][3].innerHTML.includes("close-outline") &&
+      [...square][4].innerHTML.includes("close-outline") &&
+      [...square][5].innerHTML.includes("close-outline")) ||
+    ([...square][6].innerHTML.includes("close-outline") &&
+      [...square][7].innerHTML.includes("close-outline") &&
+      [...square][8].innerHTML.includes("close-outline")) ||
+    ([...square][0].innerHTML.includes("close-outline") &&
+      [...square][3].innerHTML.includes("close-outline") &&
+      [...square][6].innerHTML.includes("close-outline")) ||
+    ([...square][1].innerHTML.includes("close-outline") &&
+      [...square][4].innerHTML.includes("close-outline") &&
+      [...square][7].innerHTML.includes("close-outline")) ||
+    ([...square][2].innerHTML.includes("close-outline") &&
+      [...square][5].innerHTML.includes("close-outline") &&
+      [...square][8].innerHTML.includes("close-outline")) ||
+    ([...square][0].innerHTML.includes("close-outline") &&
+      [...square][4].innerHTML.includes("close-outline") &&
+      [...square][8].innerHTML.includes("close-outline")) ||
+    ([...square][2].innerHTML.includes("close-outline") &&
+      [...square][4].innerHTML.includes("close-outline") &&
+      [...square][6].innerHTML.includes("close-outline"))
+  ) {
+    // alert("Player1 wins");
+    score1++;
+    right.style.background =
+      "linear-gradient(rgb(0, 0, 0, 0.25),rgb(0, 0, 0, 0.9))";
+    scorePlayer1.innerText = score1;
+  } else if (
+    ([...square][0].innerHTML.includes("ellipse-outline") &&
+      [...square][1].innerHTML.includes("ellipse-outline") &&
+      [...square][2].innerHTML.includes("ellipse-outline")) ||
+    ([...square][3].innerHTML.includes("ellipse-outline") &&
+      [...square][4].innerHTML.includes("ellipse-outline") &&
+      [...square][5].innerHTML.includes("ellipse-outline")) ||
+    ([...square][6].innerHTML.includes("ellipse-outline") &&
+      [...square][7].innerHTML.includes("ellipse-outline") &&
+      [...square][8].innerHTML.includes("ellipse-outline")) ||
+    ([...square][0].innerHTML.includes("ellipse-outline") &&
+      [...square][3].innerHTML.includes("ellipse-outline") &&
+      [...square][6].innerHTML.includes("ellipse-outline")) ||
+    ([...square][1].innerHTML.includes("ellipse-outline") &&
+      [...square][4].innerHTML.includes("ellipse-outline") &&
+      [...square][7].innerHTML.includes("ellipse-outline")) ||
+    ([...square][2].innerHTML.includes("ellipse-outline") &&
+      [...square][5].innerHTML.includes("ellipse-outline") &&
+      [...square][8].innerHTML.includes("ellipse-outline")) ||
+    ([...square][0].innerHTML.includes("ellipse-outline") &&
+      [...square][4].innerHTML.includes("ellipse-outline") &&
+      [...square][8].innerHTML.includes("ellipse-outline")) ||
+    ([...square][2].innerHTML.includes("ellipse-outline") &&
+      [...square][4].innerHTML.includes("ellipse-outline") &&
+      [...square][6].innerHTML.includes("ellipse-outline"))
+  ) {
+    // alert("Player2 wins");
+    score2++;
+    left.style.background =
+      "linear-gradient(rgb(0, 0, 0, 0.25),rgb(0, 0, 0, 0.9))";
+    scorePlayer2.innerText = score2;
+  }
+};
+
+newGame.addEventListener("click", () => {
+  squareReset();
+  clickRefresh();
+  left.style.background = "";
+  right.style.background = "";
+});
+
+reset.addEventListener("click", () => {
+  score1 = 0;
+  score2 = 0;
+  squareReset();
+  clickRefresh();
+  scorePlayer1.innerHTML = score1;
+  scorePlayer2.innerHTML = score2;
+  left.style.background = "";
+  right.style.background = "";
+});
+
+const squareReset = () => {
+  [...square].forEach((value, index) => {
+    value.innerHTML = "";
+  });
 };
