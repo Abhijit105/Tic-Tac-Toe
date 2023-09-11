@@ -112,10 +112,10 @@ body {
 .indicator-cross {
   background-color: #00ff7f;
   position: absolute;
-  width: 200px;
-  height: 200px;
+  width: 240px;
+  height: 240px;
   left: 25%;
-  top: 75%;
+  top: 80%;
   transform: translate(-50%, -50%);
   display: flex;
   align-items: center;
@@ -126,10 +126,10 @@ body {
 .indicator-nuts {
   background-color: #00fa9a;
   position: absolute;
-  width: 200px;
-  height: 200px;
+  width: 240px;
+  height: 240px;
   right: 25%;
-  top: 75%;
+  top: 80%;
   transform: translate(50%, -50%);
   display: flex;
   align-items: center;
@@ -141,12 +141,13 @@ body {
 .indicator-nuts p {
   color: #001881;
   font-size: 32px;
+  text-align: center;
 }
 
 .player-box-cross,
 .player-box-nuts {
   color: #001881;
-  font-size: 200px;
+  font-size: 160px;
 }
 
 .score-box-player1 {
@@ -177,6 +178,17 @@ body {
   color: #001881;
   border: 1px solid #001881;
   border-radius: 32px;
+}
+
+.draw {
+  color: #fff;
+  position: absolute;
+  top: 90%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 32px;
+  border: 2px double #fff;
+  padding: 8px 16px;
 }
 
 .hidden {
